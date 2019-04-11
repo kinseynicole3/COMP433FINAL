@@ -77,8 +77,12 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
 
         } else if (id == R.id.nav_edit_meds) {
+            Intent intent = new Intent(this, AccelerometerGraph.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_delete_meds) {
+            Intent intent = new Intent(this, AccelerometerGraph.class);
+            startActivity(intent);
 
         }
 
