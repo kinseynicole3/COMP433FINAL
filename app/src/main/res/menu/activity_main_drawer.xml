@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <item android:title="Manage Medications">
+        <menu>
+            <item
+                android:id="@+id/nav_add_meds"
+                android:icon="@drawable/ic_menu_camera"
+                android:title="Add Medicine" />
+            <item
+                android:id="@+id/nav_edit_meds"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="Edit Existing Medicine" />
+            <item
+                android:id="@+id/nav_delete_meds"
+                android:icon="@drawable/ic_menu_slideshow"
+                android:title="Delete Medicine" />
+        </menu>
+    </item>
+
+    <!--<item android:title="Account Settings">-->
+        <!--<menu>-->
+            <!--<item-->
+                <!--android:id="@+id/nav_picture"-->
+                <!--android:icon="@drawable/ic_menu_share"-->
+                <!--android:title="Share" />-->
+            <!--<item-->
+                <!--android:id="@+id/nav_send"-->
+                <!--android:icon="@drawable/ic_menu_send"-->
+                <!--android:title="Send" />-->
+        <!--</menu>-->
+    <!--</item>-->
+
+</menu>
