@@ -32,6 +32,8 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
     }
 
     @Override
@@ -73,16 +75,13 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_add_meds) {
-            Intent intent = new Intent(this, AccelerometerGraph.class);
-            startActivity(intent);
+            startActivity(new Intent(this, AddMeds.class));
 
         } else if (id == R.id.nav_edit_meds) {
-            Intent intent = new Intent(this, AccelerometerGraph.class);
-            startActivity(intent);
+            startActivity(new Intent(this, EditMeds.class));
 
         } else if (id == R.id.nav_delete_meds) {
-            Intent intent = new Intent(this, AccelerometerGraph.class);
-            startActivity(intent);
+            startActivity(new Intent(this, DeleteMeds.class));
 
         }
 

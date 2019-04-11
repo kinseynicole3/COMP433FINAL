@@ -9,6 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".MedHistory"></activity>
+        <activity android:name=".EditMeds" />
+        <activity android:name=".DeleteMeds" />
+        <activity android:name=".AddMeds" />
         <activity
             android:name=".MainActivity"
             android:label="MedControl"
