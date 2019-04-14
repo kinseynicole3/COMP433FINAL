@@ -4,6 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EditMeds">
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="#E8E8E8"
+    tools:context=".EditMedsActivity">
 
 </android.support.constraint.ConstraintLayout>

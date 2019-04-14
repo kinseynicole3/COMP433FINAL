@@ -1,10 +1,8 @@
 package com.example.test2;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -16,6 +14,9 @@ import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    DBHelper mDBHelper;
+    SQLiteDatabase mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +34,8 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-
+        mDBHelper = new DBHelper(this, "MyDatabase", null, 1);
+        mDatabase = mDBHelper.getWritableDatabase();
     }
 
     @Override
@@ -75,14 +77,16 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_add_meds) {
-            startActivity(new Intent(this, AddMeds.class));
+            startActivity(new Intent(this, AddMedsActivity.class));
 
         } else if (id == R.id.nav_edit_meds) {
-            startActivity(new Intent(this, EditMeds.class));
+            startActivity(new Intent(this, EditMedsActivity.class));
 
         } else if (id == R.id.nav_delete_meds) {
-            startActivity(new Intent(this, DeleteMeds.class));
+            startActivity(new Intent(this, DeleteMedsActivity.class));
 
+        } else if (id == R.id.nav_med_history) {
+            startActivity(new Intent(this, MedHistoryActivity.class));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
