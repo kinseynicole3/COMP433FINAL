@@ -9,16 +9,15 @@ import android.provider.SyncStateContract;
 import android.util.Log;
 
 public class DBHelper extends SQLiteOpenHelper {
-    int databaseVersion = 1;
 
-    DBHelper(Context context, String dbname, SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, dbname, factory, version);
+    DBHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
+        super(context, name, factory, version);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
         try {
-            db.execSQL("CREATE TABLE Meds (ID int, Name TEXT, Dosage TEXT, Frequency TEXT, Notes TEXT, Refill TEXT)");
+            db.execSQL("CREATE TABLE Meds (ID int, Name TEXT, Dosage TEXT, Frequency TEXT, Notes TEXT, Refill TEXT, Current TEXT)");
             Log.v("MYTAG", "TABLE Meds was created");
         } catch(SQLException e) {
             Log.v("MYTAG", "Error during create DB " + e.getMessage());

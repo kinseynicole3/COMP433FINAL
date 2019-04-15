@@ -6,13 +6,14 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
+    android:screenOrientation="portrait"
     android:background="#E8E8E8"
     tools:context=".AddMedsActivity">
 
     <TextView
         android:id="@+id/header"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="75dp"
         android:layout_marginBottom="15dp"
         android:gravity="center_vertical"
         android:text="Medicine Info"
@@ -31,7 +32,7 @@
 
         <TextView
             android:layout_width="175dp"
-            android:layout_height="65dp"
+            android:layout_height="60dp"
             android:gravity="center"
             android:textAlignment="center"
             android:text="Name"
@@ -41,7 +42,7 @@
         <EditText
             android:id="@+id/nameText"
             android:layout_width="215dp"
-            android:layout_height="65dp"
+            android:layout_height="60dp"
             android:gravity="center"
             android:textAlignment="center"
             android:textSize="24sp"
@@ -57,7 +58,7 @@
 
         <TextView
             android:layout_width="175dp"
-            android:layout_height="65dp"
+            android:layout_height="60dp"
             android:gravity="center"
             android:textAlignment="center"
             android:text="Dosage"
@@ -83,7 +84,7 @@
 
         <TextView
             android:layout_width="175dp"
-            android:layout_height="65dp"
+            android:layout_height="60dp"
             android:gravity="center"
             android:textAlignment="center"
             android:text="Frequency"
@@ -93,7 +94,7 @@
         <EditText
             android:id="@+id/frequencyText"
             android:layout_width="215dp"
-            android:layout_height="65dp"
+            android:layout_height="60dp"
             android:gravity="center"
             android:textAlignment="center"
             android:textSize="24sp"
@@ -109,7 +110,7 @@
 
         <TextView
             android:layout_width="175dp"
-            android:layout_height="65dp"
+            android:layout_height="60dp"
             android:gravity="center"
             android:textAlignment="center"
             android:text="Special Notes"
@@ -119,7 +120,7 @@
         <EditText
             android:id="@+id/notesText"
             android:layout_width="215dp"
-            android:layout_height="65dp"
+            android:layout_height="60dp"
             android:gravity="center"
             android:textAlignment="center"
             android:textSize="24sp"
@@ -131,11 +132,11 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="horizontal"
-        android:layout_marginBottom="30dp">
+        android:layout_marginBottom="15dp">
 
         <TextView
             android:layout_width="175dp"
-            android:layout_height="65dp"
+            android:layout_height="60dp"
             android:gravity="center"
             android:textAlignment="center"
             android:text="Refill After"
@@ -145,20 +146,32 @@
         <EditText
             android:id="@+id/refillText"
             android:layout_width="215dp"
-            android:layout_height="65dp"
+            android:layout_height="60dp"
             android:gravity="center"
             android:textAlignment="center"
             android:textSize="24sp"
             android:background="@android:color/white"/>
     </LinearLayout>
+
+    <CheckBox
+        android:id="@+id/currentMedCheckBox"
+        android:text="Current Medication?"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checked="true"
+        android:textSize="24sp"
+        android:layout_marginBottom="30dp"/>
+
     <Button
         android:layout_width="200dp"
-        android:layout_height="65dp"
+        android:layout_height="60dp"
+        android:background="#8DDAFF"
         android:gravity="center_vertical"
+        android:onClick="save"
         android:text="Save"
         android:textAlignment="center"
-        android:textSize="14pt"
-        android:background="#8DDAFF"
-        android:onClick="save"/>
+        android:textSize="14pt" />
+
+
 
 </LinearLayout>

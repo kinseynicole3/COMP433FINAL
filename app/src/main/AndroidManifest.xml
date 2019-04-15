@@ -9,29 +9,32 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MedHistoryActivity"
+        <activity android:name=".CurrentMedsActivity"
+            android:label="Current Medicine">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.test2.MainActivity" />
+        </activity>
+        <activity
+            android:name=".MedHistoryActivity"
             android:label="Medicine History">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.test2.MainActivity"/>
+                android:value="com.example.test2.MainActivity" />
         </activity>
-        <activity android:name=".EditMedsActivity"
-            android:label="Edit Medicine">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.test2.MainActivity"/>
-        </activity>
-        <activity android:name=".DeleteMedsActivity"
+        <activity
+            android:name=".DeleteMedsActivity"
             android:label="Delete Medicine">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.test2.MainActivity"/>
+                android:value="com.example.test2.MainActivity" />
         </activity>
-        <activity android:name=".AddMedsActivity"
+        <activity
+            android:name=".AddMedsActivity"
             android:label="Add Medicine">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.test2.MainActivity"/>
+                android:value="com.example.test2.MainActivity" />
         </activity>
         <activity
             android:name=".MainActivity"

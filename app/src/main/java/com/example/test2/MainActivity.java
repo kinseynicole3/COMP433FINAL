@@ -79,8 +79,8 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_add_meds) {
             startActivity(new Intent(this, AddMedsActivity.class));
 
-        } else if (id == R.id.nav_edit_meds) {
-            startActivity(new Intent(this, EditMedsActivity.class));
+        } else if (id == R.id.nav_current_meds) {
+            startActivity(new Intent(this, CurrentMedsActivity.class));
 
         } else if (id == R.id.nav_delete_meds) {
             startActivity(new Intent(this, DeleteMedsActivity.class));

@@ -9,6 +9,7 @@
     tools:showIn="@layout/app_bar_main"
     android:gravity="center"
     android:orientation="vertical"
+    android:screenOrientation="portrait"
     android:background="#E8E8E8"
     tools:context=".MainActivity">
 
