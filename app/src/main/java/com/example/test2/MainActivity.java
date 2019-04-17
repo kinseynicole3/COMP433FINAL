@@ -1,7 +1,9 @@
 package com.example.test2;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -9,8 +11,13 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -36,6 +43,24 @@ public class MainActivity extends AppCompatActivity
 
         mDBHelper = new DBHelper(this, "MyDatabase", null, 1);
         mDatabase = mDBHelper.getWritableDatabase();
+
+        Cursor c;
+        c = mDatabase.rawQuery("SELECT * from Meds", null);
+        c.moveToFirst();
+        LinearLayout lLayout = (LinearLayout) findViewById(R.id.main_layout);
+        for (int i = 0; i < c.getCount(); i++){
+            TextView tv = new TextView(this);
+            tv.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+            tv.setTextSize(2,25);
+            tv.setGravity(Gravity.CENTER);
+            tv.setText("Name: " + c.getString(1));
+            tv.setId(i + c.getCount());
+            tv.setTextColor(Color.BLACK);
+            lLayout.addView(tv);
+            Log.v("DELETE", "running i = " + i);
+            c.moveToNext();
+        }
+        c.moveToFirst();
     }
 
     @Override

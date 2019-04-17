@@ -7,17 +7,20 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/app_bar_main"
-    android:gravity="center"
     android:orientation="vertical"
     android:screenOrientation="portrait"
     android:background="#E8E8E8"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:id="@+id/main_layout">
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="Scheduled Medications" />
+        android:layout_gravity="center"
+        android:text="Current Medications"
+        android:textSize="35dp"
+        android:padding="20dp"
+        android:textColor="@android:color/black"/>
 </LinearLayout>
 
