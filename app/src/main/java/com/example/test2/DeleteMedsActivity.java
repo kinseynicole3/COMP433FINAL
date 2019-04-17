@@ -39,6 +39,5 @@ public class DeleteMedsActivity extends AppCompatActivity {
             c.moveToNext();
         }
         c.moveToFirst();
-
     }
 }
