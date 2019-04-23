@@ -71,6 +71,12 @@ public class DelMedsActivity extends AppCompatActivity {
                             Log.v("MYTAG", "Button clicked and deleted: " + name);
                             mDatabase.execSQL("DELETE FROM Meds WHERE NAME='" + name + "'");
                             currentButton.setVisibility(View.GONE);
+                            c = mDatabase.rawQuery("SELECT * from Meds", null);
+                            if(c.getCount() == 0) {
+                                TextView tv = findViewById(R.id.noMedsText);
+                                tv.setVisibility(View.VISIBLE);
+                            }
+
                         }
 
                     }
