@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity
             startActivity(new Intent(this, CurrentMedsActivity.class));
 
         } else if (id == R.id.nav_delete_meds) {
-            startActivity(new Intent(this, DeleteMedsActivity.class));
+            startActivity(new Intent(this, DelMedsActivity.class));
 
         } else if (id == R.id.nav_med_history) {
             startActivity(new Intent(this, MedHistoryActivity.class));
