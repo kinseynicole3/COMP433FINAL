@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -15,6 +17,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -25,6 +28,7 @@ public class MainActivity extends AppCompatActivity
     DBHelper mDBHelper;
     SQLiteDatabase mDatabase;
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,21 +50,31 @@ public class MainActivity extends AppCompatActivity
 
         Cursor c;
         c = mDatabase.rawQuery("SELECT * from Meds", null);
+        TextView noMeds = findViewById(R.id.textView3);
+        int count = 0;
         c.moveToFirst();
         LinearLayout lLayout = (LinearLayout) findViewById(R.id.main_layout);
         for (int i = 0; i < c.getCount(); i++){
-            TextView tv = new TextView(this);
-            tv.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-            tv.setTextSize(2,25);
-            tv.setGravity(Gravity.CENTER);
-            tv.setText("Name: " + c.getString(1));
-            tv.setId(i + c.getCount());
-            tv.setTextColor(Color.BLACK);
-            lLayout.addView(tv);
-            Log.v("DELETE", "running i = " + i);
-            c.moveToNext();
+            if(c.getString(6).trim().equals("true")) {
+                count++;
+                TextView tv = new TextView(this);
+                tv.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+                tv.setTextSize(2,25);
+                tv.setGravity(Gravity.CENTER);
+                tv.setText("Name: " + c.getString(1));
+                tv.setId(i + c.getCount());
+                tv.setTextColor(Color.BLACK);
+                lLayout.addView(tv);
+                Log.v("DELETE", "running i = " + i);
+                c.moveToNext();
+            }
         }
         c.moveToFirst();
+        if(count < 1) {
+            noMeds.setVisibility(View.VISIBLE);
+        } else {
+            noMeds.setVisibility(View.GONE);
+        }
     }
 
     @Override

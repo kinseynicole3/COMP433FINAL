@@ -32,44 +32,48 @@ public class EditStatusActivity extends AppCompatActivity {
         currLayout = findViewById(R.id.currentMedsLayout);
         pastLayout = findViewById(R.id.pastMedsLayout);
         noMedLayout = findViewById(R.id.noMedsLayout);
+        if (c.getCount() < 1) {
+            setNone();
+        } else {
+            setCurrentButtons();
+            setPastButtons();
+        }
 
-        setButtonsInLayout();
     }
 
-    public void setButtonsInLayout() {
+    private void setNone() {
+        noMedLayout.setVisibility(View.VISIBLE);
+        pastLayout.setVisibility(View.GONE);
+        currLayout.setVisibility(View.GONE);
+    }
+
+    private void setCurrentButtons() {
         c = mDatabase.rawQuery("SELECT * from Meds", null);
-        if (c.getCount() == 0) {
-            // if db empty, only display no meds
-            noMedLayout.setVisibility(View.VISIBLE);
-            pastLayout.setVisibility(View.GONE);
-            currLayout.setVisibility(View.GONE);
-        } else {
-            // if anything in db
-            noMedLayout.setVisibility(View.GONE);
-            pastLayout.setVisibility(View.VISIBLE);
-            currLayout.setVisibility(View.VISIBLE);
-        }
-        int currCount = 0;
-        int pastCount = 0;
+
+        noMedLayout.setVisibility(View.GONE);
+        pastLayout.setVisibility(View.VISIBLE);
+        currLayout.setVisibility(View.VISIBLE);
+
+        int count = 0;
         c.moveToFirst();
         for (int i = 0; i < c.getCount(); i++) {
+            Log.v("MYTAG", "Current?:" + c.getString(6));
             if (c.getString(6).trim().equals("true")) {
-                currCount++;
-            } else {
-                pastCount++;
+                count++;
             }
+            c.moveToNext();
         }
-        TextView noCurrTitle = findViewById(R.id.no_current_meds);
-        TextView noPastTitle = findViewById(R.id.no_past_meds);
-        TextView currTitle = findViewById(R.id.current_meds_title);
-        TextView pastTitle = findViewById(R.id.past_meds_title);
+        c = mDatabase.rawQuery("SELECT * from Meds", null);
 
-        if (currCount < 1) { // no current meds
+        TextView noCurrTitle = findViewById(R.id.no_current_meds);
+        TextView currTitle = findViewById(R.id.current_meds_title);
+
+        if (count < 1) { // no current meds
             currTitle.setVisibility(View.VISIBLE);
             noCurrTitle.setVisibility(View.VISIBLE);
         } else { // there are current meds
             currTitle.setVisibility(View.VISIBLE);
-            noCurrTitle.setVisibility(View.VISIBLE);
+            noCurrTitle.setVisibility(View.GONE);
 
             c.moveToFirst();
             for (int i = 0; i < c.getCount(); i++) {
@@ -87,32 +91,45 @@ public class EditStatusActivity extends AppCompatActivity {
                             int id = v.getId();
                             Button currentButton = findViewById(id);
                             String name = currentButton.getText().toString().trim();
-                            if(name.equals(null)) {
+                            if (name.equals(null)) {
                                 Log.v("MYTAG", "Med doesnt exist");
                             } else {
-                                Log.v("MYTAG", "Button clicked: " + name);
-                                mDatabase.execSQL("DELETE FROM Meds WHERE NAME='" + name + "'");
-                                currentButton.setVisibility(View.GONE);
-                                c = mDatabase.rawQuery("SELECT * from Meds", null);
-                                if(c.getCount() == 0) {
-                                    TextView tv = findViewById(R.id.noMedsText);
-                                    tv.setVisibility(View.VISIBLE);
-                                }
                             }
                         }
                     });
                     currLayout.addView(button);
-                    c.moveToNext();
                 }
+                c.moveToNext();
             }
         }
+    }
 
-        if (pastCount < 1) { // no past meds
+    private void setPastButtons() {
+        c = mDatabase.rawQuery("SELECT * from Meds", null);
+        noMedLayout.setVisibility(View.GONE);
+        pastLayout.setVisibility(View.VISIBLE);
+        currLayout.setVisibility(View.VISIBLE);
+
+        int count = 0;
+        c.moveToFirst();
+        for (int i = 0; i < c.getCount(); i++) {
+            if (c.getString(6).trim().equals("false")) {
+                count++;
+            }
+            c.moveToNext();
+        }
+        c = mDatabase.rawQuery("SELECT * from Meds", null);
+
+        TextView noPastTitle = findViewById(R.id.no_past_meds);
+        TextView pastTitle = findViewById(R.id.past_meds_title);
+
+
+        if (count < 1) { // no past meds
             pastTitle.setVisibility(View.VISIBLE);
             noPastTitle.setVisibility(View.VISIBLE);
         } else { // there are past meds
             pastTitle.setVisibility(View.VISIBLE);
-            noPastTitle.setVisibility(View.VISIBLE);
+            noPastTitle.setVisibility(View.GONE);
 
             c.moveToFirst();
             for (int i = 0; i < c.getCount(); i++) {
@@ -130,24 +147,18 @@ public class EditStatusActivity extends AppCompatActivity {
                             int id = v.getId();
                             Button currentButton = findViewById(id);
                             String name = currentButton.getText().toString().trim();
-                            if(name.equals(null)) {
+                            if (name.equals(null)) {
                                 Log.v("MYTAG", "Med doesnt exist");
                             } else {
                                 Log.v("MYTAG", "Button clicked: " + name);
-                                mDatabase.execSQL("DELETE FROM Meds WHERE NAME='" + name + "'");
-                                currentButton.setVisibility(View.GONE);
-                                c = mDatabase.rawQuery("SELECT * from Meds", null);
-                                if(c.getCount() == 0) {
-                                    TextView tv = findViewById(R.id.noMedsText);
-                                    tv.setVisibility(View.VISIBLE);
-                                }
                             }
                         }
                     });
                     pastLayout.addView(button);
-                    c.moveToNext();
                 }
+                c.moveToNext();
             }
         }
     }
 }
+

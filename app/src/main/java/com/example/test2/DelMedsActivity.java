@@ -52,7 +52,7 @@ public class DelMedsActivity extends AppCompatActivity {
 
             c.moveToFirst();
             for (int i = 0; i < c.getCount(); i++) {
-                
+
                     Button button = new Button(this);
                     button.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
                     button.setTextSize(2, 25);
