@@ -9,11 +9,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DelMedsActivity"
-            android:label="DeleteM Medicine">
+        <activity android:name=".EditStatusActivity"
+            android:label="Edit Med Status">
             <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value="com.example.test2.MainActivity" />
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.test2.MainActivity" />
+        </activity>
+        <activity
+            android:name=".DelMedsActivity"
+            android:label="Delete Medicine">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.test2.MainActivity" />
         </activity>
         <activity
             android:name=".CurrentMedsActivity"

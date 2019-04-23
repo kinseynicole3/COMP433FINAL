@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:screenOrientation="portrait"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="#E8E8E8"
+    tools:context=".EditStatusActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:id="@+id/noMedsLayout">
+
+            <TextView
+                android:id="@+id/no_meds_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="You have no current or past medication."
+                android:textAlignment="center"
+                android:textSize="25dp"
+                android:padding="20dp"
+                android:textColor="@android:color/black"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:id="@+id/currentMedsLayout">
+
+            <TextView
+                android:id="@+id/current_meds_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Current Medications:"
+                android:textAlignment="center"
+                android:textSize="25dp"
+                android:padding="20dp"
+                android:textColor="@android:color/black"/>
+
+            <TextView
+                android:id="@+id/no_current_meds"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="You don't have any current medications saved"
+                android:textAlignment="center"
+                android:textSize="18dp"
+                android:padding="20dp"
+                android:textColor="@android:color/black"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:id="@+id/pastMedsLayout">
+
+            <TextView
+                android:id="@+id/past_meds_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Past Medications:"
+                android:textAlignment="center"
+                android:textSize="25dp"
+                android:padding="20dp"
+                android:textColor="@android:color/black"/>
+
+            <TextView
+                android:id="@+id/no_past_meds"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="You don't have any past medications saved"
+                android:textAlignment="center"
+                android:textSize="18dp"
+                android:padding="20dp"
+                android:textColor="@android:color/black"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+</ScrollView>

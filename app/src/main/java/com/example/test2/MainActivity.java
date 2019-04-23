@@ -112,6 +112,8 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_med_history) {
             startActivity(new Intent(this, MedHistoryActivity.class));
+        } else if (id == R.id.nav_med_status) {
+            startActivity(new Intent(this, EditStatusActivity.class));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

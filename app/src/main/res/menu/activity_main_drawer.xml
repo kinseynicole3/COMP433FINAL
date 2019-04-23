@@ -21,6 +21,10 @@
                 android:id="@+id/nav_med_history"
                 android:icon="@drawable/ic_menu_slideshow"
                 android:title="Medicine History" />
+            <item
+                android:id="@+id/nav_med_status"
+                android:icon="@drawable/ic_menu_slideshow"
+                android:title="Edit Med Status" />
         </menu>
     </item>
 
