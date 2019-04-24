@@ -42,7 +42,6 @@ public class NotificationActivity extends AppCompatActivity implements TimePicke
             public void onClick(View v) {
                 DialogFragment timePicker = new TimePickerFragment();
                 timePicker.show(getSupportFragmentManager(), "time picker");
-                sendOnChannel("Test Title", "Test Message" );
             }
         });
 
@@ -69,10 +68,6 @@ public class NotificationActivity extends AppCompatActivity implements TimePicke
         startAlarm(c);
     }
 
-    public void sendOnChannel(String title, String message) {
-        NotificationCompat.Builder nb = mNotificationHelper.getChannelNotification(title, message);
-        mNotificationHelper.getManager().notify(1, nb.build());
-    }
 
     private void updateTimeText(Calendar c) {
         String timeText = "Alarm set for: ";
@@ -84,6 +79,7 @@ public class NotificationActivity extends AppCompatActivity implements TimePicke
     @android.support.annotation.RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void startAlarm(Calendar c) {
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+
         Intent intent = new Intent(this, AlertReceiver.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
 
