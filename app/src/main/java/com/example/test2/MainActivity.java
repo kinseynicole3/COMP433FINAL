@@ -51,30 +51,22 @@ public class MainActivity extends AppCompatActivity
         Cursor c;
         c = mDatabase.rawQuery("SELECT * from Meds", null);
         TextView noMeds = findViewById(R.id.textView3);
+        TextView tv = findViewById(R.id.textView2);
         int count = 0;
-        c.moveToFirst();
-        LinearLayout lLayout = (LinearLayout) findViewById(R.id.main_layout);
-        for (int i = 0; i < c.getCount(); i++){
-            if(c.getString(6).trim().equals("true")) {
-                count++;
-                TextView tv = new TextView(this);
-                tv.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-                tv.setTextSize(2,25);
-                tv.setGravity(Gravity.CENTER);
-                tv.setText("Name: " + c.getString(1));
-                tv.setId(i + c.getCount());
-                tv.setTextColor(Color.BLACK);
-                lLayout.addView(tv);
-                Log.v("DELETE", "running i = " + i);
+
+        int counter = 0;
+        if(c.getCount() > 0) {
+            c.moveToFirst();
+            for (int i = 0; i < c.getCount(); i++) {
+                Log.v("MYTAG", "Current?:" + c.getString(6));
+                if(c.getString(6).trim().equals("true")) {
+                    counter++;
+                    tv.append("\n" + counter + ".  Name:   " + c.getString(1));
+                }
                 c.moveToNext();
             }
         }
-        c.moveToFirst();
-        if(count < 1) {
-            noMeds.setVisibility(View.VISIBLE);
-        } else {
-            noMeds.setVisibility(View.GONE);
-        }
+
     }
 
     @Override
