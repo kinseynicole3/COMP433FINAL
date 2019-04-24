@@ -15,6 +15,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.test2.MainActivity" />
         </activity>
+        <receiver android:name=".AlertReceiver"/>
         <activity
             android:name=".EditStatusActivity"
             android:label="Edit Medication Status">

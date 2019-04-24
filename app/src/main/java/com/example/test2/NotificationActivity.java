@@ -1,7 +1,14 @@
 package com.example.test2;
 
+import android.annotation.TargetApi;
+import android.app.AlarmManager;
 import android.app.Notification;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -11,8 +18,13 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
-public class NotificationActivity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener {
+import java.sql.DataTruncation;
+import java.text.DateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
+public class NotificationActivity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener {
+    private TextView mTextView;
     private NotificationHelper mNotificationHelper;
     private Button notification;
     @Override
@@ -20,8 +32,10 @@ public class NotificationActivity extends AppCompatActivity implements TimePicke
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification);
 
-        Button button = (Button) findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
+        mTextView = findViewById(R.id.textView);
+
+        Button timePicker = findViewById(R.id.time_picker);
+        timePicker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DialogFragment timePicker = new TimePickerFragment();
@@ -29,7 +43,7 @@ public class NotificationActivity extends AppCompatActivity implements TimePicke
             }
         });
 
-        notification = (Button) findViewById(R.id.button2);
+        notification = findViewById(R.id.set_alarm);
         mNotificationHelper = new NotificationHelper(this);
         notification.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,16 +51,59 @@ public class NotificationActivity extends AppCompatActivity implements TimePicke
                 sendOnChannel("Test Title", "Test Message" );
             }
         });
+
+        Button buttonCancelAlarm = findViewById(R.id.button_cancel);
+        buttonCancelAlarm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cancelAlarm();
+            }
+        });
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-        TextView textview = (TextView) findViewById(R.id.textView);
+        TextView textview = findViewById(R.id.textView);
         textview.setText("Hour: " + hourOfDay + "Minute: " + minute);
+        Calendar c = Calendar.getInstance();
+        c.set(Calendar.HOUR_OF_DAY, hourOfDay);
+        c.set(Calendar.MINUTE, minute);
+        c.set(Calendar.SECOND, 0);
+
+        updateTimeText(c);
+        startAlarm(c);
     }
 
     public void sendOnChannel(String title, String message) {
         NotificationCompat.Builder nb = mNotificationHelper.getChannelNotification(title, message);
         mNotificationHelper.getManager().notify(1, nb.build());
     }
-}
+
+    private void updateTimeText(Calendar c) {
+        String timeText = "Alarm set for: ";
+        timeText += DateFormat.getTimeInstance(DateFormat.SHORT).format(c.getTime());
+
+        mTextView.setText(timeText);
+    }
+
+    @android.support.annotation.RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    private void startAlarm(Calendar c) {
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(this, AlertReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
+
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
+
+    }
+
+    private void cancelAlarm() {
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(this, AlertReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
+
+        alarmManager.cancel(pendingIntent);
+        mTextView.setText("Alarm Canceled");
+
+    }
+ }
