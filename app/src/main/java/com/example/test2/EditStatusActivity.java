@@ -48,6 +48,41 @@ public class EditStatusActivity extends AppCompatActivity {
         currLayout.setVisibility(View.GONE);
     }
 
+    public void changeLabels() {
+        c = mDatabase.rawQuery("SELECT * from Meds", null);
+        int count1 = 0;
+        int count2 = 0;
+        c.moveToFirst();
+        for(int i = 0; i < c.getCount(); i++) {
+            if(c.getString(6).trim().equals("true")) {
+                Log.v("COUNTTAG", "hit true");
+                count1++;
+            } else {
+                Log.v("COUNTTAG", "hit false");
+
+                count2++;
+            }
+            c.moveToNext();
+        }
+        TextView title1 = findViewById(R.id.no_current_meds);
+        TextView title2 = findViewById(R.id.no_past_meds);
+
+        if(count1 < 1 && count2 > 1) {
+            Log.v("COUNTTAG", "hit 1");
+
+            title1.setVisibility(View.VISIBLE);
+        } else if (count2 < 1 && count1 > 1){
+            Log.v("COUNTTAG", "hit 2");
+
+            title2.setVisibility(View.VISIBLE);
+        } else {
+            Log.v("COUNTTAG", "hit 3");
+
+            title1.setVisibility(View.GONE);
+            title2.setVisibility(View.GONE);
+        }
+    }
+
 
     private void setCurrentButtons() {
         c = mDatabase.rawQuery("SELECT * from Meds", null);
@@ -106,6 +141,7 @@ public class EditStatusActivity extends AppCompatActivity {
                                     currLayout.removeView(currentButton);
                                     pastLayout.addView(currentButton);
                                 }
+                                changeLabels();
                             }
                         }
                     });
@@ -174,6 +210,7 @@ public class EditStatusActivity extends AppCompatActivity {
                                     currLayout.removeView(currentButton);
                                     pastLayout.addView(currentButton);
                                 }
+                                changeLabels();
                             }
                         }
                     });
