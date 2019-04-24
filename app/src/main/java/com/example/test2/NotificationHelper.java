@@ -6,10 +6,18 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.ContextWrapper;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 
 public class NotificationHelper extends ContextWrapper {
+
+    DBHelper mDBHelper = new DBHelper(this, "MyDatabase", null, 1);
+    SQLiteDatabase mDatabase = mDBHelper.getWritableDatabase();
+    Cursor c = mDatabase.rawQuery("SELECT * from Meds", null);
+    String title = "titleeeee";
+    String message = "messageeeee";
 
     public static final String channelID = "channelID";
     public static final String channelName= "User";
@@ -39,7 +47,7 @@ public class NotificationHelper extends ContextWrapper {
         return mManager;
     }
 
-    public NotificationCompat.Builder getChannelNotification(String title, String message) {
+    public NotificationCompat.Builder getChannelNotification() {
         return new NotificationCompat.Builder(getApplicationContext(), channelID)
                 .setContentTitle(title)
                 .setContentText(message)
