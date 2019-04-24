@@ -94,6 +94,7 @@ public class EditStatusActivity extends AppCompatActivity {
                             if (name.equals(null)) {
                                 Log.v("MYTAG", "Med doesnt exist");
                             } else {
+                                mDatabase.execSQL("UPDATE Meds SET Current='false' WHERE Name='" + name + "'");
                             }
                         }
                     });
@@ -150,7 +151,7 @@ public class EditStatusActivity extends AppCompatActivity {
                             if (name.equals(null)) {
                                 Log.v("MYTAG", "Med doesnt exist");
                             } else {
-                                Log.v("MYTAG", "Button clicked: " + name);
+                                mDatabase.execSQL("UPDATE Meds SET Current='true' WHERE Name='" + name + "'");
                             }
                         }
                     });
