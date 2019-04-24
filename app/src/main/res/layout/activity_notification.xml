@@ -24,16 +24,10 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Time"
+        android:text="No Alarm Set"
         android:layout_gravity="center"
         android:textSize="30sp"
         />
-
-    <Button
-        android:id="@+id/time_picker"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Choose Notification Time" />
 
     <Button
         android:id="@+id/set_alarm"
