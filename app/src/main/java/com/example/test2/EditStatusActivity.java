@@ -41,11 +41,13 @@ public class EditStatusActivity extends AppCompatActivity {
 
     }
 
+
     private void setNone() {
         noMedLayout.setVisibility(View.VISIBLE);
         pastLayout.setVisibility(View.GONE);
         currLayout.setVisibility(View.GONE);
     }
+
 
     private void setCurrentButtons() {
         c = mDatabase.rawQuery("SELECT * from Meds", null);
@@ -88,6 +90,7 @@ public class EditStatusActivity extends AppCompatActivity {
 
                         @Override
                         public void onClick(View v) {
+                            c = mDatabase.rawQuery("SELECT * from Meds", null);
                             int id = v.getId();
                             Button currentButton = findViewById(id);
                             String name = currentButton.getText().toString().trim();
@@ -95,6 +98,14 @@ public class EditStatusActivity extends AppCompatActivity {
                                 Log.v("MYTAG", "Med doesnt exist");
                             } else {
                                 mDatabase.execSQL("UPDATE Meds SET Current='false' WHERE Name='" + name + "'");
+                                c = mDatabase.rawQuery("SELECT * from Meds", null);
+                                if (pastLayout.findViewById(v.getId()) == currentButton) {
+                                    pastLayout.removeView(currentButton);
+                                    currLayout.addView(currentButton);
+                                } else {
+                                    currLayout.removeView(currentButton);
+                                    pastLayout.addView(currentButton);
+                                }
                             }
                         }
                     });
@@ -104,6 +115,7 @@ public class EditStatusActivity extends AppCompatActivity {
             }
         }
     }
+
 
     private void setPastButtons() {
         c = mDatabase.rawQuery("SELECT * from Meds", null);
@@ -145,6 +157,8 @@ public class EditStatusActivity extends AppCompatActivity {
 
                         @Override
                         public void onClick(View v) {
+                            c = mDatabase.rawQuery("SELECT * from Meds", null);
+
                             int id = v.getId();
                             Button currentButton = findViewById(id);
                             String name = currentButton.getText().toString().trim();
@@ -152,6 +166,14 @@ public class EditStatusActivity extends AppCompatActivity {
                                 Log.v("MYTAG", "Med doesnt exist");
                             } else {
                                 mDatabase.execSQL("UPDATE Meds SET Current='true' WHERE Name='" + name + "'");
+                                c = mDatabase.rawQuery("SELECT * from Meds", null);
+                                if (pastLayout.findViewById(v.getId()) == currentButton) {
+                                    pastLayout.removeView(currentButton);
+                                    currLayout.addView(currentButton);
+                                } else {
+                                    currLayout.removeView(currentButton);
+                                    pastLayout.addView(currentButton);
+                                }
                             }
                         }
                     });
@@ -162,4 +184,3 @@ public class EditStatusActivity extends AppCompatActivity {
         }
     }
 }
-
