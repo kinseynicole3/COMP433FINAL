@@ -9,36 +9,43 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".EditStatusActivity"
-            android:label="Edit Med Status">
+        <activity android:name=".NotificationActivity"
+            android:label="Set Up Notifications">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.test2.MainActivity" />
+        </activity>
+        <activity
+            android:name=".EditStatusActivity"
+            android:label="Edit Medication Status">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.test2.MainActivity" />
         </activity>
         <activity
             android:name=".DelMedsActivity"
-            android:label="Delete Medicine">
+            android:label="Delete Medication">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.test2.MainActivity" />
         </activity>
         <activity
             android:name=".CurrentMedsActivity"
-            android:label="Current Medicine">
+            android:label="Current Medication">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.test2.MainActivity" />
         </activity>
         <activity
             android:name=".MedHistoryActivity"
-            android:label="Medicine History">
+            android:label="Past Medication">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.test2.MainActivity" />
         </activity>
         <activity
             android:name=".AddMedsActivity"
-            android:label="Add Medicine">
+            android:label="Add Medication">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.test2.MainActivity" />

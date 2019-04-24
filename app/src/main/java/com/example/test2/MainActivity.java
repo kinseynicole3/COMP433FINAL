@@ -52,7 +52,6 @@ public class MainActivity extends AppCompatActivity
 
         Cursor c;
         c = mDatabase.rawQuery("SELECT * from Meds", null);
-        TextView noMeds = findViewById(R.id.textView3);
         TextView tv = findViewById(R.id.textView2);
         int count = 0;
 
@@ -67,6 +66,9 @@ public class MainActivity extends AppCompatActivity
                 }
                 c.moveToNext();
             }
+        }
+        if(counter < 1) {
+            tv.setText("No medications to take");
         }
 
     }
@@ -122,6 +124,9 @@ public class MainActivity extends AppCompatActivity
             startActivity(new Intent(this, MedHistoryActivity.class));
         } else if (id == R.id.nav_med_status) {
             startActivity(new Intent(this, EditStatusActivity.class));
+        } else if (id == R.id.nav_set_not) {
+            startActivity(new Intent(this, NotificationActivity.class));
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

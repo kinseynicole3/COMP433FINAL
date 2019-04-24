@@ -2,6 +2,7 @@ package com.example.test2;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -56,6 +57,7 @@ public class DelMedsActivity extends AppCompatActivity {
                     Button button = new Button(this);
                     button.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
                     button.setTextSize(2, 25);
+                    button.setBackgroundColor(Color.MAGENTA);
                     button.setGravity(Gravity.CENTER);
                     button.setText("" + c.getString(1));
                     button.setId(i + c.getCount());

@@ -48,7 +48,7 @@ public class MedHistoryActivity extends AppCompatActivity {
             }
         }
         if(counter < 1) {
-            tv.setText("No current medications");
+            tv.setText("No past medications");
         }
 
     }

@@ -3,28 +3,41 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
+    <item android:title="My Medications">
+        <menu>
+            <item
+                android:id="@+id/nav_current_meds"
+                android:icon="@drawable/ic_menu_star_black"
+                android:title="Current Medication" />
+            <item
+                android:id="@+id/nav_med_history"
+                android:icon="@drawable/ic_menu_star_black"
+                android:title="Past Medications" />
+        </menu>
+    </item>
+
     <item android:title="Manage Medications">
         <menu>
             <item
                 android:id="@+id/nav_add_meds"
-                android:icon="@drawable/ic_menu_camera"
-                android:title="Add Medicine" />
-            <item
-                android:id="@+id/nav_current_meds"
-                android:icon="@drawable/ic_menu_gallery"
-                android:title="Current Medicine" />
-            <item
-                android:id="@+id/nav_delete_meds"
-                android:icon="@drawable/ic_menu_slideshow"
-                android:title="Delete Medicine" />
-            <item
-                android:id="@+id/nav_med_history"
-                android:icon="@drawable/ic_menu_slideshow"
-                android:title="Medicine History" />
+                android:icon="@drawable/ic_menu_star_black"
+                android:title="Add Medication" />
             <item
                 android:id="@+id/nav_med_status"
-                android:icon="@drawable/ic_menu_slideshow"
-                android:title="Edit Med Status" />
+                android:icon="@drawable/ic_menu_star_black"
+                android:title="Edit Medication Status" />
+            <item
+                android:id="@+id/nav_delete_meds"
+                android:icon="@drawable/ic_menu_star_black"
+                android:title="Delete Medication" />
+        </menu>
+    </item>
+    <item android:title="Notifications">
+        <menu>
+            <item
+                android:id="@+id/nav_set_not"
+                android:icon="@drawable/ic_menu_star_black"
+                android:title="Set Up Notifications" />
         </menu>
     </item>
 

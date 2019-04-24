@@ -10,11 +10,31 @@
     android:background="#E8E8E8"
     tools:context=".EditStatusActivity">
 
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Change the status of your medication:"
+                android:textAlignment="center"
+                android:textSize="16pt"
+                android:padding="20dp"
+                android:textColor="@android:color/black"
+                app:fontFamily="sans-serif-medium"/>
+
+        </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -29,9 +49,10 @@
                 android:layout_height="wrap_content"
                 android:text="You have no current or past medication."
                 android:textAlignment="center"
-                android:textSize="25dp"
+                android:textSize="10pt"
                 android:padding="20dp"
-                android:textColor="@android:color/black"/>
+                android:textColor="@android:color/black"
+                app:fontFamily="sans-serif-medium"/>
 
         </LinearLayout>
 
@@ -49,9 +70,10 @@
                 android:layout_height="wrap_content"
                 android:text="Current Medications:"
                 android:textAlignment="center"
-                android:textSize="25dp"
+                android:textSize="12pt"
                 android:padding="20dp"
-                android:textColor="@android:color/black"/>
+                android:textColor="@android:color/black"
+                app:fontFamily="sans-serif-medium"/>
 
             <TextView
                 android:id="@+id/no_current_meds"
@@ -59,9 +81,10 @@
                 android:layout_height="wrap_content"
                 android:text="You don't have any current medications saved"
                 android:textAlignment="center"
-                android:textSize="18dp"
+                android:textSize="10pt"
                 android:padding="20dp"
-                android:textColor="@android:color/black"/>
+                android:textColor="@android:color/black"
+                app:fontFamily="sans-serif-medium"/>
 
         </LinearLayout>
 
@@ -78,9 +101,10 @@
                 android:layout_height="wrap_content"
                 android:text="Past Medications:"
                 android:textAlignment="center"
-                android:textSize="25dp"
+                android:textSize="12pt"
                 android:padding="20dp"
-                android:textColor="@android:color/black"/>
+                android:textColor="@android:color/black"
+                app:fontFamily="sans-serif-medium"/>
 
             <TextView
                 android:id="@+id/no_past_meds"
@@ -88,9 +112,10 @@
                 android:layout_height="wrap_content"
                 android:text="You don't have any past medications saved"
                 android:textAlignment="center"
-                android:textSize="18dp"
+                android:textSize="10pt"
                 android:padding="20dp"
-                android:textColor="@android:color/black"/>
+                android:textColor="@android:color/black"
+                app:fontFamily="sans-serif-medium"/>
 
         </LinearLayout>
 
