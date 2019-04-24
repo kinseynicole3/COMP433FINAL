@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import java.sql.DataTruncation;
 import java.text.DateFormat;
@@ -34,20 +35,13 @@ public class NotificationActivity extends AppCompatActivity implements TimePicke
 
         mTextView = findViewById(R.id.textView);
 
-        Button timePicker = findViewById(R.id.time_picker);
-        timePicker.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DialogFragment timePicker = new TimePickerFragment();
-                timePicker.show(getSupportFragmentManager(), "time picker");
-            }
-        });
-
         notification = findViewById(R.id.set_alarm);
         mNotificationHelper = new NotificationHelper(this);
         notification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                DialogFragment timePicker = new TimePickerFragment();
+                timePicker.show(getSupportFragmentManager(), "time picker");
                 sendOnChannel("Test Title", "Test Message" );
             }
         });
@@ -94,7 +88,6 @@ public class NotificationActivity extends AppCompatActivity implements TimePicke
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
 
         alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
-
     }
 
     private void cancelAlarm() {
@@ -103,7 +96,9 @@ public class NotificationActivity extends AppCompatActivity implements TimePicke
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
 
         alarmManager.cancel(pendingIntent);
-        mTextView.setText("Alarm Canceled");
+        mTextView.setText("No Alarm Set");
+
+        Toast.makeText(this, "Alarm Canceled", Toast.LENGTH_SHORT).show();
 
     }
  }
