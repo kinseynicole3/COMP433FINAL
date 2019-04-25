@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:screenOrientation="portrait"
     android:orientation="vertical"
-    android:background="#E8E8E8"
+    android:background="#DCFFE7"
     tools:context=".NotificationActivity">
 
         <TextView
@@ -18,7 +18,7 @@
             android:textAlignment="center"
             android:textSize="16pt"
             android:textColor="@android:color/black"
-            app:fontFamily="sans-serif-medium"/>
+            app:fontFamily="sans-serif-medium" />
 
     <TextView
         android:id="@+id/textView"
@@ -27,18 +27,21 @@
         android:text="No Alarm Set"
         android:layout_gravity="center"
         android:textSize="30sp"
-        />
+        android:layout_marginBottom="15dp"/>
 
     <Button
         android:id="@+id/set_alarm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Set Alarm" />
+        android:text="Set Alarm"
+        android:background="#8DDAFF"
+        android:layout_marginBottom="15dp"/>
 
     <Button
         android:id="@+id/button_cancel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Cancel Alarm" />
+        android:text="Cancel Alarm"
+        android:background="#8DDAFF"/>
 
 </LinearLayout>

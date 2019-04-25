@@ -16,8 +16,8 @@ public class NotificationHelper extends ContextWrapper {
     DBHelper mDBHelper = new DBHelper(this, "MyDatabase", null, 1);
     SQLiteDatabase mDatabase = mDBHelper.getWritableDatabase();
     Cursor c = mDatabase.rawQuery("SELECT * from Meds", null);
-    String title = "titleeeee";
-    String message = "messageeeee";
+    String title = null;
+    String message = null;
 
     public static final String channelID = "channelID";
     public static final String channelName= "User";
@@ -49,9 +49,75 @@ public class NotificationHelper extends ContextWrapper {
 
     public NotificationCompat.Builder getChannelNotification() {
         return new NotificationCompat.Builder(getApplicationContext(), channelID)
-                .setContentTitle(title)
-                .setContentText(message)
+                .setContentTitle(getTitle())
+                .setContentText(getMessage())
                 .setSmallIcon(R.drawable.ic_one);
+    }
+
+    private String getTitle() {
+        c = mDatabase.rawQuery("SELECT * from Meds", null);
+        int counter = 0;
+        if (c.getCount() > 0) {
+            c.moveToFirst();
+            for (int i = 0; i < c.getCount(); i++) {
+                if (c.getString(6).trim().equals("true")) {
+                    counter++;
+                }
+                c.moveToNext();
+            }
+            if (counter < 1) {
+                title = "Med Control Reminder: No medication to take!";
+                return title;
+            } else {
+                String title = "Med Control Reminder: Take your medication!";
+                return title;
+            }
+        } else {
+            title = "Med Control Reminder: No medication to take!";
+            return title;
+        }
+
+
+    }
+
+    private String getMessage() {
+        message = "Meds: ";
+        c = mDatabase.rawQuery("SELECT * from Meds", null);
+        int counter = 0;
+        if (c.getCount() > 0) {
+            c.moveToFirst();
+            for(int i = 0; i < c.getCount(); i++) {
+                if(c.getString(6).trim().equals("true")) {
+                    counter++;
+                }
+                c.moveToNext();
+            }
+            if (counter < 1) {
+                message = "You don't have any medication to take!";
+                return message;
+            }
+            int counter2 = 0;
+            c.moveToFirst();
+            for(int i = 0; i < c.getCount(); i++) {
+                if(c.getString(6).trim().equals("true")) {
+                    counter2++;
+                    message += c.getString(1);
+                    if(counter2 < counter) {
+                        message += ", ";
+                    } else if(counter2 >= counter){
+                        message += ".";
+                        break;
+                    }
+                }
+                c.moveToNext();
+            }
+            return message;
+        } else {
+            message = "You don't have any medication to take!";
+            return message;
+        }
+
+
     }
 
 }

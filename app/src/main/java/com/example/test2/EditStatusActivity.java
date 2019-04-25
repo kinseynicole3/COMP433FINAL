@@ -120,8 +120,6 @@ public class EditStatusActivity extends AppCompatActivity {
                     button.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
                     button.setTextSize(2, 25);
                     button.setGravity(Gravity.CENTER);
-                    button.setBackgroundColor(Color.MAGENTA);
-
                     button.setText("" + c.getString(1));
                     button.setId(i + c.getCount());
                     button.setOnClickListener(new View.OnClickListener() {
@@ -190,7 +188,6 @@ public class EditStatusActivity extends AppCompatActivity {
                     button.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
                     button.setTextSize(2, 25);
                     button.setGravity(Gravity.CENTER);
-                    button.setBackgroundColor(Color.MAGENTA);
                     button.setText("" + c.getString(1));
                     button.setId(i + c.getCount());
                     button.setOnClickListener(new View.OnClickListener() {

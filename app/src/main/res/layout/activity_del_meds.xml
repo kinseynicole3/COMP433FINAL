@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    android:background="#E8E8E8"
+    android:background="#DCFFE7"
     android:screenOrientation="portrait"
     tools:context=".DelMedsActivity">
 
